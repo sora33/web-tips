@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>テキストへの音声変換</title>
+  </head>
+  <body>
+    <button id="toggle">音声を開始</button>
+    <div>
+      <pre id="text"></pre>
+    </div>
+    <script>
+      const toggleButton = document.getElementById('toggle');
+      const textElement = document.getElementById('text');
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'ja-JP';
+      let isListening = false;
+
+      recognition.onresult = function(event) {
+          const result = event.results[0][0].transcript;
+          textElement.innerText += result + '\n';
+      };
+
+      recognition.onerror = function(event) {
+          textElement.innerText += '音声認識にエラーが発生しました: ' + event.error;
+          recognition.start();
+          toggleButton.innerText = '音声を終了';  
+      };
+
+
+      recognition.onend = function() {
+          recognition.start(); // 無限ループ
+      };
+
+
+      toggleButton.onclick = function() {
+          if (isListening) {
+              recognition.stop();
+              toggleButton.innerText = '音声を開始';
+          } else {
+              recognition.start();
+              toggleButton.innerText = '音声を終了';
+          }
+          isListening = !isListening;
+      };
+    </script>
+  </body>
+</html>
