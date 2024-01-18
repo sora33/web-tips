@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INPUT EVENT LOGGER</title>
+</head>
+<body style="padding: 1rem;">
+  <h2>捕捉するイベント</h2>
+  <div id="event-checkboxes">
+    <label><input type="checkbox" name="events" value="focus" checked> focus</label>
+    <label><input type="checkbox" name="events" value="blur" checked> blur</label>
+    <label><input type="checkbox" name="events" value="input" checked> input</label>
+    <label><input type="checkbox" name="events" value="change" checked> change</label><br>
+    <label><input type="checkbox" name="events" value="compositionstart"> compositionstart</label>
+    <label><input type="checkbox" name="events" value="compositionupdate"> compositionupdate</label>
+    <label><input type="checkbox" name="events" value="compositionend"> compositionend</label><br>
+    <label><input type="checkbox" name="events" value="keydown"> keydown</label>
+    <label><input type="checkbox" name="events" value="keyup"> keyup</label>
+    <label><input type="checkbox" name="events" value="keypress"> keypress</label>
+  </div>
+
+  <h2>フォームとログ</h2>
+  <input type="text" id="text-input" placeholder="入力してね">
+  <div id="log" style="margin-top: .5rem; font-size: .9rem;"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
